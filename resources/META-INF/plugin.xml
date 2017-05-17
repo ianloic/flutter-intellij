@@ -294,6 +294,11 @@
     <action class="io.flutter.actions.FlutterGettingStarted" id="Flutter.FlutterHelp" text="Flutter Plugin Help">
       <add-to-group group-id="HelpMenu" anchor="after" relative-to-action="HelpTopics"/>
     </action>
+
+    <group id="FuchsiaFileMenuActions">
+      <action class="io.flutter.actions.fuchsia.CreateModulesAction" id="Fuchsia.CreateModulesAction" text="Create Fuchsia Modules"></action>
+      <add-to-group group-id="FileMenu" anchor="after" relative-to-action="CloseProject" />
+    </group>
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">

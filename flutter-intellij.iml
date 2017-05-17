@@ -20,7 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tool/icons/packages" />
       <excludeFolder url="file://$MODULE_DIR$/tool/packages" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="IDEA Ultimate" jdkType="IDEA JDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" scope="PROVIDED">
       <library>
