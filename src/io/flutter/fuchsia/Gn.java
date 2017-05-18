@@ -11,22 +11,21 @@ import com.intellij.execution.process.OSProcessHandler;
 import com.intellij.execution.process.ProcessAdapter;
 import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessOutputTypes;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.vfs.CharsetToolkit;
 
 import java.util.*;
+import java.util.function.Consumer;
 
-public class GnRefsQuery {
-  public interface ResultCallback {
-    void Result(List<String> labels);
-  }
+public class Gn {
   private final String fuchsiaDir;
 
-  public GnRefsQuery(String fuchsiaDir) {
-    this.fuchsiaDir = fuchsiaDir;
+  public Gn(Project project) {
+    this.fuchsiaDir = project.getBasePath();
   }
 
-  public void query(String target, ResultCallback callback) {
+  public void refs(String target, Consumer<List<String>> callback) {
     final StringBuffer outBuffer = new StringBuffer();
     final GeneralCommandLine cmd = new GeneralCommandLine();
     cmd.setCharset(CharsetToolkit.UTF8_CHARSET);
@@ -40,7 +39,7 @@ public class GnRefsQuery {
       handler.addProcessListener(new ProcessAdapter() {
         @Override
         public void processTerminated(ProcessEvent event) {
-          callback.Result(Arrays.asList(outBuffer.toString().split("[\\r\\n]+")));
+          callback.accept(Arrays.asList(outBuffer.toString().split("[\\r\\n]+")));
         }
 
         @Override
@@ -55,7 +54,7 @@ public class GnRefsQuery {
     }
     catch (ExecutionException e1) {
       e1.printStackTrace();
-      callback.Result(null);
+      callback.accept(null);
     }
   }
 
