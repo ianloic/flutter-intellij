@@ -304,6 +304,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <postStartupActivity implementation="io.flutter.ProjectOpenActivity"/>
     <postStartupActivity implementation="io.flutter.FlutterInitializer"/>
+    <postStartupActivity implementation="io.flutter.fuchsia.FuchsiaInitializer" />
     <projectService serviceInterface="io.flutter.run.daemon.DeviceService"
                     serviceImplementation="io.flutter.run.daemon.DeviceService"/>
     <projectService serviceInterface="io.flutter.bazel.WorkspaceCache"
